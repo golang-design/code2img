@@ -28,6 +28,7 @@ import (
 
 func main() {
 	router := gin.Default()
+	router.Static("/api/v1/code2img/data/code", "./data/code")
 	router.Static("/api/v1/code2img/data/images", "./data/images")
 	router.POST("/api/v1/code2img", code2img)
 	s := &http.Server{Addr: ":8080", Handler: router}

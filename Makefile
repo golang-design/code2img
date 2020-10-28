@@ -3,9 +3,13 @@
 # by a GNU GPL-3.0 license that can be found in the LICENSE file.
 
 all:
-	GOOS=linux go build
+	GOOS=linux go build -mod=vendor
 	docker build -t code2img .
 up: down
 	docker-compose -f docker-compose.yml up -d
 down:
 	docker-compose -f docker-compose.yml down
+clean:
+	rm code2img
+	docker rmi -f $(shell docker images -f "dangling=true" -q) 2> /dev/null; true
+.PHONY: up down clean

@@ -5,7 +5,7 @@
 version: "3"
 
 services:
-  polyred:
+  code2img:
     container_name: code2img
     restart: always
     volumes:
