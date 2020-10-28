@@ -13,3 +13,6 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+data/code/*.go
+data/images/*.png
+code2img

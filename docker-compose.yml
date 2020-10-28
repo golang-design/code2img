@@ -1,0 +1,17 @@
+# Copyright 2020 The golang.design Initiative authors.
+# All rights reserved. Use of this source code is governed
+# by a GNU GPL-3.0 license that can be found in the LICENSE file.
+
+version: "3"
+
+services:
+  polyred:
+    container_name: code2img
+    restart: always
+    volumes:
+      - ./data:/app/data
+    image: code2img
+    cap_add:
+      - SYS_PTRACE # for debugging
+    ports:
+      - "5656:8080"
