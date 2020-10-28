@@ -1,0 +1,110 @@
+# github.com/chromedp/cdproto v0.0.0-20200116234248-4da64dd111ac
+## explicit
+github.com/chromedp/cdproto
+github.com/chromedp/cdproto/accessibility
+github.com/chromedp/cdproto/animation
+github.com/chromedp/cdproto/applicationcache
+github.com/chromedp/cdproto/audits
+github.com/chromedp/cdproto/backgroundservice
+github.com/chromedp/cdproto/browser
+github.com/chromedp/cdproto/cachestorage
+github.com/chromedp/cdproto/cast
+github.com/chromedp/cdproto/cdp
+github.com/chromedp/cdproto/css
+github.com/chromedp/cdproto/database
+github.com/chromedp/cdproto/debugger
+github.com/chromedp/cdproto/deviceorientation
+github.com/chromedp/cdproto/dom
+github.com/chromedp/cdproto/domdebugger
+github.com/chromedp/cdproto/domsnapshot
+github.com/chromedp/cdproto/domstorage
+github.com/chromedp/cdproto/emulation
+github.com/chromedp/cdproto/fetch
+github.com/chromedp/cdproto/headlessexperimental
+github.com/chromedp/cdproto/heapprofiler
+github.com/chromedp/cdproto/indexeddb
+github.com/chromedp/cdproto/input
+github.com/chromedp/cdproto/inspector
+github.com/chromedp/cdproto/io
+github.com/chromedp/cdproto/layertree
+github.com/chromedp/cdproto/log
+github.com/chromedp/cdproto/media
+github.com/chromedp/cdproto/memory
+github.com/chromedp/cdproto/network
+github.com/chromedp/cdproto/overlay
+github.com/chromedp/cdproto/page
+github.com/chromedp/cdproto/performance
+github.com/chromedp/cdproto/profiler
+github.com/chromedp/cdproto/runtime
+github.com/chromedp/cdproto/security
+github.com/chromedp/cdproto/serviceworker
+github.com/chromedp/cdproto/storage
+github.com/chromedp/cdproto/systeminfo
+github.com/chromedp/cdproto/target
+github.com/chromedp/cdproto/tethering
+github.com/chromedp/cdproto/tracing
+github.com/chromedp/cdproto/webaudio
+github.com/chromedp/cdproto/webauthn
+# github.com/chromedp/chromedp v0.5.3
+## explicit
+github.com/chromedp/chromedp
+github.com/chromedp/chromedp/device
+github.com/chromedp/chromedp/kb
+# github.com/gin-contrib/sse v0.1.0
+github.com/gin-contrib/sse
+# github.com/gin-gonic/gin v1.6.3
+## explicit
+github.com/gin-gonic/gin
+github.com/gin-gonic/gin/binding
+github.com/gin-gonic/gin/internal/bytesconv
+github.com/gin-gonic/gin/internal/json
+github.com/gin-gonic/gin/render
+# github.com/go-playground/locales v0.13.0
+github.com/go-playground/locales
+github.com/go-playground/locales/currency
+# github.com/go-playground/universal-translator v0.17.0
+github.com/go-playground/universal-translator
+# github.com/go-playground/validator/v10 v10.2.0
+github.com/go-playground/validator/v10
+# github.com/gobwas/httphead v0.0.0-20180130184737-2c6c146eadee
+github.com/gobwas/httphead
+# github.com/gobwas/pool v0.2.0
+github.com/gobwas/pool
+github.com/gobwas/pool/internal/pmath
+github.com/gobwas/pool/pbufio
+github.com/gobwas/pool/pbytes
+# github.com/gobwas/ws v1.0.2
+github.com/gobwas/ws
+github.com/gobwas/ws/wsutil
+# github.com/golang/protobuf v1.3.3
+github.com/golang/protobuf/proto
+# github.com/google/uuid v1.1.2
+## explicit
+github.com/google/uuid
+# github.com/json-iterator/go v1.1.9
+github.com/json-iterator/go
+# github.com/knq/sysutil v0.0.0-20191005231841-15668db23d08
+github.com/knq/sysutil
+# github.com/leodido/go-urn v1.2.0
+github.com/leodido/go-urn
+# github.com/mailru/easyjson v0.7.0
+github.com/mailru/easyjson
+github.com/mailru/easyjson/buffer
+github.com/mailru/easyjson/jlexer
+github.com/mailru/easyjson/jwriter
+# github.com/mattn/go-isatty v0.0.12
+github.com/mattn/go-isatty
+# github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421
+github.com/modern-go/concurrent
+# github.com/modern-go/reflect2 v0.0.0-20180701023420-4b7aa43c6742
+github.com/modern-go/reflect2
+# github.com/sirupsen/logrus v1.7.0
+## explicit
+github.com/sirupsen/logrus
+# github.com/ugorji/go/codec v1.1.7
+github.com/ugorji/go/codec
+# golang.org/x/sys v0.0.0-20200116001909-b77594299b42
+golang.org/x/sys/unix
+golang.org/x/sys/windows
+# gopkg.in/yaml.v2 v2.2.8
+gopkg.in/yaml.v2
