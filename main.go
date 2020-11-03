@@ -142,6 +142,7 @@ func render(imgfile, code string) error {
 	var picbuf []byte
 	sel := "#export-container  .container-bg"
 	err := chromedp.Run(ctx, chromedp.Tasks{
+		chromedp.EmulateViewport(2560, 1440),
 		chromedp.Navigate(url),
 		screenshot(sel, &picbuf, chromedp.NodeReady, chromedp.ByID),
 	})
