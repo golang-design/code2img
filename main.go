@@ -5,6 +5,7 @@
 package main
 
 import (
+	"bufio"
 	"context"
 	"fmt"
 	"io/ioutil"
@@ -13,6 +14,8 @@ import (
 	"net/url"
 	"os"
 	"os/signal"
+	"strconv"
+	"strings"
 	"syscall"
 	"time"
 
@@ -65,7 +68,7 @@ func code2img(c *gin.Context) {
 	id := uuid.New().String()
 	gofile := "./data/code/" + id + ".go"
 
-	err := ioutil.WriteFile(gofile, []byte(b.Code), os.ModePerm)
+	err := ioutil.WriteFile(gofile, []byte(filterLineNumber(b.Code)), os.ModePerm)
 	if err != nil {
 		logrus.Errorf("[%s]: write file error %v", gofile, err)
 		c.String(http.StatusBadRequest, fmt.Sprintf("Error: %s", err))
@@ -79,6 +82,47 @@ func code2img(c *gin.Context) {
 	}
 
 	c.String(http.StatusOK, "https://golang.design/api/v1/code2img/data/images/"+id+".png")
+}
+
+// root := folder
+// 677
+//	if options.ExpandWorkspaceToModule {
+// 678
+//		wsRoot, _ := findWorkspaceRoot(ctx, root, s)
+// 682
+//		if wsRoot != "" {
+// 683
+//			root = wsRoot
+// 684
+//		}
+// 685
+//	}
+func filterLineNumber(code string) string {
+	lines, err := stringToLines(code)
+	if err != nil {
+		fmt.Printf("filter code line number, error: %v", err)
+		return code
+	}
+	retCode := make([]string, 0, len(lines))
+	for _, line := range lines {
+		originLine := line
+		line = strings.TrimSpace(line)
+		_, err := strconv.Atoi(line)
+		if err != nil {
+			retCode = append(retCode, originLine)
+			continue
+		}
+	}
+	return strings.Join(retCode, "\n")
+}
+
+func stringToLines(s string) (lines []string, err error) {
+	scanner := bufio.NewScanner(strings.NewReader(s))
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+	err = scanner.Err()
+	return
 }
 
 func render(imgfile, code string) error {
