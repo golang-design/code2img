@@ -130,7 +130,7 @@ func render(imgfile, code string) error {
 		values.Set(k, v)
 	}
 	codeparam := url.Values{}
-	codeparam.Set("code", code)
+	codeparam.Set("code", url.PathEscape(code))
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 	defer cancel()
