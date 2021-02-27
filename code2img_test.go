@@ -22,7 +22,7 @@ func TestRender(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 	defer cancel()
 
-	got, err := code2img.Render(ctx, `import "golang.design/x/code2img`)
+	got, err := code2img.Render(ctx, `import "golang.design/x/code2img"`)
 	if err != nil {
 		t.Fatalf("render failed: %v", err)
 	}
