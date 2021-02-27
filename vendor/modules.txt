@@ -78,7 +78,7 @@ github.com/gobwas/ws
 github.com/gobwas/ws/wsutil
 # github.com/golang/protobuf v1.3.3
 github.com/golang/protobuf/proto
-# github.com/google/uuid v1.1.2
+# github.com/google/uuid v1.2.0
 ## explicit
 github.com/google/uuid
 # github.com/json-iterator/go v1.1.9
