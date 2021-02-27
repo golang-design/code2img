@@ -2,18 +2,13 @@
 // All rights reserved. Use of this source code is governed
 // by a GNU GPL-3.0 license that can be found in the LICENSE file.
 
-package main
+package code2img
 
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
 	"math"
-	"net/http"
 	"net/url"
-	"os"
-	"os/signal"
-	"syscall"
 	"time"
 
 	"github.com/chromedp/cdproto/cdp"
@@ -21,67 +16,11 @@ import (
 	"github.com/chromedp/cdproto/emulation"
 	"github.com/chromedp/cdproto/page"
 	"github.com/chromedp/chromedp"
-	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
-	"github.com/sirupsen/logrus"
 )
 
-func main() {
-	router := gin.Default()
-	router.Static("/api/v1/code2img/data/code", "./data/code")
-	router.Static("/api/v1/code2img/data/images", "./data/images")
-	router.POST("/api/v1/code2img", code2img)
-	s := &http.Server{Addr: ":8080", Handler: router}
-
-	go func() {
-		if err := s.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			logrus.Fatalf("listen: %s\n", err)
-		}
-	}()
-
-	quit := make(chan os.Signal)
-	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
-	<-quit
-	logrus.Println("shutting down...")
-
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-	if err := s.Shutdown(ctx); err != nil {
-		logrus.Fatal("forced to shutdown: ", err)
-	}
-	logrus.Println("server exiting, good bye!")
-}
-
-type form struct {
-	Code string `json:"code"`
-}
-
-func code2img(c *gin.Context) {
-	b := form{}
-	if err := c.ShouldBindJSON(&b); err != nil {
-		c.String(http.StatusBadRequest, fmt.Sprintf("Error: %s", err))
-		return
-	}
-	id := uuid.New().String()
-	gofile := "./data/code/" + id + ".go"
-
-	err := ioutil.WriteFile(gofile, []byte(b.Code), os.ModePerm)
-	if err != nil {
-		logrus.Errorf("[%s]: write file error %v", gofile, err)
-		c.String(http.StatusBadRequest, fmt.Sprintf("Error: %s", err))
-		return
-	}
-
-	err = render("./data/images/"+id+".png", b.Code)
-	if err != nil {
-		c.String(http.StatusBadRequest, fmt.Sprintf("Error: %s", err))
-		return
-	}
-
-	c.String(http.StatusOK, "https://golang.design/api/v1/code2img/data/images/"+id+".png")
-}
-
-func render(imgfile, code string) error {
+// Render renders the given code string and returns a binary buffer
+// that contains a carbon-now based image.
+func Render(code string) ([]byte, error) {
 	// https://carbon.now.sh/?
 	// bg=rgba(74%2C144%2C226%2C1)&
 	// t=material&
@@ -147,15 +86,9 @@ func render(imgfile, code string) error {
 		screenshot(sel, &picbuf, chromedp.NodeReady, chromedp.ByID),
 	})
 	if err != nil {
-		return fmt.Errorf("render task error: %w", err)
+		return nil, fmt.Errorf("code2img: render task failed: %w", err)
 	}
-
-	err = ioutil.WriteFile(imgfile, picbuf, os.ModePerm)
-	if err != nil {
-		logrus.Errorf("[%s]: write screenshot error %v", imgfile, err)
-		return err
-	}
-	return nil
+	return picbuf, nil
 }
 
 func screenshot(sel interface{}, picbuf *[]byte, opts ...chromedp.QueryOption) chromedp.QueryAction {

@@ -3,9 +3,9 @@
 # by a GNU GPL-3.0 license that can be found in the LICENSE file.
 
 all:
-	GOOS=linux go build -mod=vendor
+	GOOS=linux go build -mod=vendor ./cmd/code2img
 	docker build -t code2img .
-up: down
+up:
 	docker-compose -f docker-compose.yml up -d
 down:
 	docker-compose -f docker-compose.yml down

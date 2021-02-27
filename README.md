@@ -1,8 +1,27 @@
-# code2img
+# code2img [![PkgGoDev](https://pkg.go.dev/badge/golang.design/x/code2img)](https://pkg.go.dev/golang.design/x/code2img) ![](https://changkun.de/urlstat?mode=github&repo=golang-design/code2img)
 
 a carbon service wrapper
 
-## iOS Shortcut
+```go
+import "golang.design/x/code2img"
+```
+
+## API Usage
+
+Just one API `code2img.Render`, to use it:
+
+```go
+b, err := code2img.Render(`import "golang.design/x/code2img"`)
+if err != nil {
+    panic(err)
+}
+
+os.WriteFile("code.png", b, os.ModePerm)
+```
+
+## Service Usage
+
+### iOS Shortcut
 
 Basic usage notes:
 
@@ -15,7 +34,7 @@ Demo:
 
 ![](./demo.gif)
 
-## API
+### Server API
 
 ```
 POST golang.design/api/v1/code2img
@@ -34,6 +53,13 @@ You can also access the code text:
 
 ```
 https://golang.design/api/v1/code2img/data/code/06ad29c5-2989-4a8e-8cd2-1ce63e36167b.go
+```
+
+### Deploy Instructions
+
+```sh
+make
+make up
 ```
 
 ## License
