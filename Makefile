@@ -4,11 +4,11 @@
 
 all:
 	GOOS=linux go build -mod=vendor ./cmd/code2img
-	docker build -t code2img .
+	docker build -t code2img -f docker/Dockerfile .
 up:
-	docker-compose -f docker-compose.yml up -d
+	docker-compose -f docker/docker-compose.yml up -d
 down:
-	docker-compose -f docker-compose.yml down
+	docker-compose -f docker/docker-compose.yml down
 clean:
 	rm code2img
 	docker rmi -f $(shell docker images -f "dangling=true" -q) 2> /dev/null; true

@@ -8,16 +8,21 @@ package code2img_test
 
 import (
 	"bytes"
+	"context"
 	"image/png"
 	"math"
 	"os"
 	"testing"
+	"time"
 
 	"golang.design/x/code2img"
 )
 
 func TestRender(t *testing.T) {
-	got, err := code2img.Render(`import "golang.design/x/code2img`)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	defer cancel()
+
+	got, err := code2img.Render(ctx, `import "golang.design/x/code2img`)
 	if err != nil {
 		t.Fatalf("render failed: %v", err)
 	}
@@ -27,7 +32,7 @@ func TestRender(t *testing.T) {
 		t.Fatalf("cannot read rendered image: %v", err)
 	}
 
-	want, err := os.ReadFile("testdata.png")
+	want, err := os.ReadFile("testdata/want.png")
 	if err != nil {
 		t.Fatalf("cannot read gold test file: %v", err)
 	}
@@ -40,7 +45,7 @@ func TestRender(t *testing.T) {
 	if math.Abs(float64(imgGot.Bounds().Dx()-imgWant.Bounds().Dx())) > 5 ||
 		math.Abs(float64(imgGot.Bounds().Dy()-imgWant.Bounds().Dy())) > 5 {
 
-		err := os.WriteFile("got.png", got, os.ModePerm)
+		err := os.WriteFile("testdata/got.png", got, os.ModePerm)
 		if err != nil {
 			t.Errorf("failed to write image: %v", err)
 		}

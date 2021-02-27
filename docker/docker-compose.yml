@@ -9,7 +9,7 @@ services:
     container_name: code2img
     restart: always
     volumes:
-      - ./data:/app/data
+      - ../data:/app/data
     image: code2img
     cap_add:
       - SYS_PTRACE # for debugging

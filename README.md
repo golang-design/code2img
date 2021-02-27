@@ -11,7 +11,7 @@ import "golang.design/x/code2img"
 Just one API `code2img.Render`, to use it:
 
 ```go
-b, err := code2img.Render(`import "golang.design/x/code2img"`)
+b, err := code2img.Render(context.TODO(), `import "golang.design/x/code2img"`)
 if err != nil {
     panic(err)
 }
@@ -32,7 +32,7 @@ Basic usage notes:
 
 Demo:
 
-![](./demo.gif)
+![](./testdata/demo.gif)
 
 ### Server API
 
@@ -64,4 +64,4 @@ make up
 
 ## License
 
-&copy; 2020 The golang.design Initiative Authors.
+&copy; 2020-2021 The golang.design Initiative Authors.

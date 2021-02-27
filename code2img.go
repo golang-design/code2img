@@ -11,7 +11,6 @@ import (
 	"fmt"
 	"math"
 	"net/url"
-	"time"
 
 	"github.com/chromedp/cdproto/cdp"
 	"github.com/chromedp/cdproto/dom"
@@ -22,7 +21,7 @@ import (
 
 // Render renders the given code string and returns a binary buffer
 // that contains a carbon-now based image.
-func Render(code string) ([]byte, error) {
+func Render(ctx context.Context, code string) ([]byte, error) {
 	// https://carbon.now.sh/?
 	// bg=rgba(74%2C144%2C226%2C1)&
 	// t=material&
@@ -73,9 +72,7 @@ func Render(code string) ([]byte, error) {
 	codeparam := url.Values{}
 	codeparam.Set("code", url.PathEscape(code))
 
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
-	defer cancel()
-	ctx, cancel = chromedp.NewContext(ctx)
+	ctx, cancel := chromedp.NewContext(ctx)
 	defer cancel()
 
 	url := "https://carbon.now.sh/?" + values.Encode() + "&" + codeparam.Encode()
