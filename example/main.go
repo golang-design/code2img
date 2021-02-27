@@ -15,7 +15,7 @@ func main() {
 	code := string(f)
 
 	// render it!
-	b, err := code2img.Render(context.TODO(), code)
+	b, err := code2img.Render(context.TODO(), code2img.LangGo, code)
 	if err != nil {
 		panic(err)
 	}

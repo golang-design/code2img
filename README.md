@@ -1,6 +1,6 @@
 # code2img [![PkgGoDev](https://pkg.go.dev/badge/golang.design/x/code2img)](https://pkg.go.dev/golang.design/x/code2img) ![](https://changkun.de/urlstat?mode=github&repo=golang-design/code2img)
 
-a carbon service wrapper for Go users
+A carbon-now wrapper for Go users and supports for iOS Shortcut
 
 ```go
 import "golang.design/x/code2img"

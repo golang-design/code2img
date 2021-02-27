@@ -47,7 +47,7 @@ func main() {
 		ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 		defer cancel()
 
-		buf, err := code2img.Render(ctx, b.Code)
+		buf, err := code2img.Render(ctx, code2img.LangGo, b.Code)
 		if err != nil {
 			c.String(http.StatusBadRequest, fmt.Sprintf("Error: %s", err))
 			return
