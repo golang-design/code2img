@@ -8,3 +8,7 @@ require (
 	github.com/gin-gonic/gin v1.6.3
 	github.com/google/uuid v1.2.0
 )
+
+retract (
+	v0.1.2
+)
