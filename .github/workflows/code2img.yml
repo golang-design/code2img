@@ -1,0 +1,33 @@
+# Copyright 2021 The golang.design Initiative authors.
+# All rights reserved. Use of this source code is governed
+# by a GNU GPL-3.0 license that can be found in the LICENSE file.
+#
+# Written by Changkun Ou <changkun.de>
+
+name: code2img
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  platform_test:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-go@v2
+      with:
+        stable: 'false'
+        go-version: '1.16.0'
+
+    - name: Test
+      run: |
+        go test -v -covermode=atomic ./...
