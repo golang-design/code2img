@@ -19,7 +19,7 @@ import (
 )
 
 func TestRender(t *testing.T) {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
 	got, err := code2img.Render(ctx, code2img.LangGo, `import "golang.design/x/code2img"`)
