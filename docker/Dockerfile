@@ -11,4 +11,5 @@ RUN apt update && apt install dumb-init
 ENTRYPOINT ["dumb-init", "--"]
 WORKDIR /app
 COPY . .
+EXPOSE 80
 CMD ["/app/code2img"]

@@ -13,5 +13,11 @@ services:
     image: code2img
     cap_add:
       - SYS_PTRACE # for debugging
-    ports:
-      - "5656:8080"
+    deploy:
+      replicas: 1
+    networks:
+      - traefik_proxy
+networks:
+  traefik_proxy:
+    external: true
+

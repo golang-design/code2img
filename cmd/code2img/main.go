@@ -57,10 +57,10 @@ func main() {
 			log.Printf("[%s]: write screenshot error %v", imgfile, err)
 			return
 		}
-		c.String(http.StatusOK, "https://golang.design/api/v1/code2img/data/images/"+id+".png")
+		c.String(http.StatusOK, "https://"+c.Request.Host+"/api/v1/code2img/data/images/"+id+".png")
 	})
 
-	s := &http.Server{Addr: ":8080", Handler: router}
+	s := &http.Server{Addr: ":80", Handler: router}
 	go func() {
 		if err := s.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("listen: %s\n", err)
